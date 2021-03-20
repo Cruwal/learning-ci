@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['LEARNING_CI_DATABASE_USERNAME'] %>
+  password: <%= ENV['LEARNING_CI_DATABASE_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: learning_ci_development
+
+test:
+  <<: *default
+  database: learning_ci_test
+
+production:
+  <<: *default
+  database: learning_ci_production
+  username: learning_ci
+  password: <%= ENV['LEARNING_CI_DATABASE_PASSWORD'] %>
